@@ -1,7 +1,7 @@
 # This is the AndroidExample4_setting about PreferenceFragment
 ---
 ### the key codes: **preference.xml**
-
+[preference.xml](https://github.com/Propantheline/AndroidExample4_setting/blob/master/test3/app/src/main/res/xml/preference.xml)
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
