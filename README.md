@@ -75,6 +75,87 @@
 
 </PreferenceScreen>
 ```
+### Intent_test: 
+**intent_test.xml**
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/intent_test"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".IntentTestMain">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="输入网址"
+            android:layout_weight="1"
+            android:id="@+id/et_url"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="ToWebview"
+            android:text="浏览网页"
+            android:id="@+id/btn_go"
+            />
+    </LinearLayout>
+
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/my_webView"
+        >
+
+    </WebView>
+
+</LinearLayout>
+```
+**IntentMain.java**
+```
+package com.example.test3;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+
+public class IntentTestMain extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.intent_test);
+    }
+    public void ToWebview(View view){
+        EditText edt = findViewById(R.id.et_url);
+        String text =  edt.getText().toString();
+        if (!text.isEmpty()) {
+            // Create the text message with a string
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra("msg", text);
+            sendIntent.setType("text/plain");
+
+            // Verify that the intent will resolve to an activity
+            if (sendIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(sendIntent);
+            }
+        }
+    }
+}
+```
+
 ### Screenshots
 ![PreferenceFragmentTest](https://img-blog.csdnimg.cn/20190415121118420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTMxNTI5NA==,size_16,color_FFFFFF,t_70 "PreferenceFragmentTest")
 
